@@ -6,14 +6,16 @@ export default class user extends Component{
         super(props);
   
         this.state = {
+          id: 0,
+          email: '',
           first_name: '',
           last_name: '',
+          imagem: ''
         };
     }
   
     componentDidMount(){
       this.fetchJSON();
-  
     }
   
     fetchJSON(){
@@ -21,11 +23,19 @@ export default class user extends Component{
       .then(response => response.json())
       .then((item)=> {
   
+        var id = item['data']['id']
+        var email = item['data']['email']
         var first_name = item['data']['first_name']
         var last_name = item['data']['last_name']
-  
-        this.setState({first_name: first_name,
-                    last_name: last_name,})
+        var image = item['data']['avatar']
+
+        this.setState({
+            id : id,
+            email : email,
+            first_name: first_name,
+            last_name: last_name,
+            image : image
+        })
   
       })
       .catch(error=>console.log(error))
@@ -33,10 +43,10 @@ export default class user extends Component{
     render (){
         return(
             <View>
-                <text>Id Usuario: </text>
-                <text>Email: </text>
-                <text>Nome: </text>
-                <text>Sobrenome: </text>
+                <text>{this.state.id}</text>
+                <text>{this.state.email}</text>
+                <text>{this.state.first_name} {this.state.last_name}</text>
+                <image>source = {{uri:this.state.image}}</image>
             </View>
         )
     }
