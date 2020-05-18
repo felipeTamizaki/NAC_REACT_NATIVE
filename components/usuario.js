@@ -46,7 +46,11 @@ export default class user extends Component{
                 <text>{this.state.id}</text>
                 <text>{this.state.email}</text>
                 <text>{this.state.first_name} {this.state.last_name}</text>
-                <image>source = {{uri:this.state.image}}</image>
+                <Image source={{uri:this.state.imagem}}
+                        style={{width: '100%',
+                                height: 250,
+                                resizeMode:'contain',
+                                justifyContent:'center'}}/>
             </View>
         )
     }
